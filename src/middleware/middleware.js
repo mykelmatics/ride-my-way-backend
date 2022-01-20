@@ -14,7 +14,6 @@ export const validateExistingUser = async (req, res, next) => {
       '*',
       ` WHERE "phoneNumber"='${phoneNumber}'`
     );
-    console.log(validateEmail.rowCount, 'root123');
     if (validateEmail.rowCount || validatePhoneNumber.rowCount) {
       return res.status(409).json({
         message: 'Email or PhoneNumber already Exist',
@@ -112,8 +111,6 @@ export const validateDriverLoginDetails = async (req, res) => {
       password,
       validateEmail.rows[0].password
     );
-
-    console.log(validatePassword, 'backend23');
     if (validatePassword) {
       const { id, firstName, lastName, email } = validateEmail.rows[0];
       const userInfo = { id, firstName, lastName, email };
@@ -142,7 +139,6 @@ export const validateDriverLoginDetails = async (req, res) => {
 
 export const isLoggedIn = (req, res, next) => {
   const token = req.headers.authorization;
-  console.log(token);
   let tokenValue;
   try {
     if (token) {
@@ -190,7 +186,6 @@ export const validateSignup = async (req, res, next) => {
     req.body.password = await bcrypt.hash(password, 10);
     return next();
   } catch (err) {
-    console.log(err);
     const errorMessage = err.details.map((error) => ({
       message: error.message,
     }));

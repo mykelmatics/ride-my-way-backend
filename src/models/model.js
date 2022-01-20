@@ -47,23 +47,8 @@ class Model {
       query += `${sqlQuery}`;
     }
   }
-  // async update(data, clause) {
-  //   let query = `UPDATE ${this.table} SET `;
-  //   const keys = Object.keys(data);
-  //   let sqlQuery;
-  //   for (const key of keys) {
-  //     if (key === keys[keys.length - 1]) {
-  //       sqlQuery = `"${key}" = '${data[key]}' `;
-  //       query += `${sqlQuery}`;
-  //       console.log(sqlQuery, 'query');
-  //       query += `${clause} RETURNING *`;
-  //       return this.pool.query(query);
-  //     }
-  //     sqlQuery = `"${key}" = '${data[key]}',`;
-  //     query += `${sqlQuery}`;
-  //     console.log(query, '888');
-  //   }
-  // }
+
+
 }
 
 export default Model;

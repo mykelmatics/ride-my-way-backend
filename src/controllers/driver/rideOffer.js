@@ -9,7 +9,6 @@ export const addRide = async (req, res) => {
   const values = ` ${id}, '${location}', '${destination}', '${amount}', '${status}' `;
   try {
     const data = await rideOfferModel.insertWithReturn(columns, values);
-    console.log(data);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(500).json({ messages: err.message });

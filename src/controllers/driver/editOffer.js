@@ -12,7 +12,6 @@ export const editRideOffer = async (req, res) => {
     const dataInfo = await editOfferModel.editFromTable(
      data , clause
     );
-    console.log(dataInfo);
     res.status(200).json({ messages: 'Offer edited Successfully' });
   } catch (err) {
     res.status(500).json({ messages: err.message });
