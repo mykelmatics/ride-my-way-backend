@@ -1,7 +1,5 @@
 import Model from '../../models/model';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv'
-dotenv.config();
+import assignToken from '../../helper/assignToken';
 
 export const passengerModel = new Model('passenger');
 
@@ -13,14 +11,8 @@ export const createPassengerAccount = async (req, res) => {
     const data = await passengerModel.insertWithReturn(columns, values);
     const { id } = data.rows[0];
     const userInfo = { id, firstName, lastName, email };
-    const token = jwt.sign(
-      {
-        userInfo,
-      },
-      'welcomeuser',
-      { expiresIn: '10h' }
-    );
-    res.status(200).json({ messages: userInfo,token });
+    const token = assignToken(userInfo);
+    res.status(200).json({ messages: userInfo, token });
   } catch (err) {
     res.status(500).json({ messages: err.message });
   }

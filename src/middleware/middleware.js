@@ -2,6 +2,8 @@ import Joi from 'joi';
 import bcrypt from 'bcrypt';
 import { driverModel, passengerModel } from '../controllers';
 import jwt from 'jsonwebtoken';
+import assignToken from '../helper/assignToken';
+
 
 export const validateExistingUser = async (req, res, next) => {
   const { email, phoneNumber } = req.body;
@@ -70,13 +72,7 @@ export const validatePassengerLoginDetails = async (req, res, next) => {
     if (validatePassword) {
       const { id, firstName, lastName, email } = validateEmail.rows[0];
       const userInfo = { id, firstName, lastName, email };
-      const token = jwt.sign(
-        {
-          userInfo,
-        },
-        'welcomeuser',
-        { expiresIn: '10h' }
-      );
+      const token = assignToken(userInfo)
       return res.status(200).json({
         message: 'Login Successfully',
         userInfo,
@@ -114,13 +110,8 @@ export const validateDriverLoginDetails = async (req, res) => {
     if (validatePassword) {
       const { id, firstName, lastName, email } = validateEmail.rows[0];
       const userInfo = { id, firstName, lastName, email };
-      const token = jwt.sign(
-        {
-          userInfo,
-        },
-        'welcomeuser',
-        { expiresIn: '10h' }
-      );
+      const token = assignToken(userInfo)
+
       return res.status(200).json({
         message: 'Login Successfully',
         token,

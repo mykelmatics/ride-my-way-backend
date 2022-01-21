@@ -6,7 +6,7 @@ export const editRideOffer = async (req, res) => {
   const data = req.body
   const {offerId} = req.params
   const { id } = req.user.userInfo;
-  const clause = `WHERE id = ${offerId} AND driver_id = ${id}`;
+  const clause = `WHERE id = ${offerId} AND driverId = ${id}`;
 
   try {
     const dataInfo = await editOfferModel.editFromTable(

@@ -21,14 +21,14 @@ driverRouter.post(
   createDriverAccount
 );
 driverRouter.post('/driver/login', validateDriverLoginDetails);
-driverRouter.post('/driver/create', isLoggedIn, addRide);
-driverRouter.delete(
-  '/driver/delete-ride-offer/:offerId',
+driverRouter.post('/driver/add-offer', isLoggedIn, addRide);
+driverRouter.delete('/driver/offers/:offerId', isLoggedIn, deleteRideOffer);
+driverRouter.get('/driver/offers/created-offer', isLoggedIn, createdOffer);
+driverRouter.put(
+  '/driver/offers/edit-offer/:offerId',
   isLoggedIn,
-  deleteRideOffer
+  editRideOffer
 );
-driverRouter.get('/driver/created-offer', isLoggedIn, createdOffer);
-driverRouter.put('/driver/edit-offer/:offerId', isLoggedIn, editRideOffer);
 driverRouter.put('/driver/edit-profile', isLoggedIn, editProfile);
 
 export default driverRouter;

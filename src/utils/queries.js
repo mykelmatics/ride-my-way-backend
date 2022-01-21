@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS driver (
 export const createRideOffer = `
   CREATE TABLE IF NOT EXISTS rideoffer (
     id SERIAL PRIMARY KEY,
-    driver_id integer REFERENCES driver(id),
+    "driverId" integer REFERENCES driver(id),
     amount INT NOT NULL,
     location VARCHAR(150) NOT NULL,
     destination VARCHAR(150) NOT NULL,
@@ -34,9 +34,9 @@ export const createRideOffer = `
 export const createRideHistory = `
   CREATE TABLE IF NOT EXISTS ridehistory (
     id SERIAL PRIMARY KEY,
-    driver_id integer REFERENCES driver(id),
-    passenger_id integer REFERENCES passenger(id),
-    offer_id integer REFERENCES rideoffer(id),
+    "driverId" integer REFERENCES driver(id),
+    "passengerId" integer REFERENCES passenger(id),
+    "offerId" integer REFERENCES rideoffer(id),
     amount INT NOT NULL,
     location VARCHAR(150) NOT NULL,
     destination VARCHAR(150) NOT NULL,

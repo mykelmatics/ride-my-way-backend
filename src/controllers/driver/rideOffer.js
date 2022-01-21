@@ -5,8 +5,8 @@ export const rideOfferModel = new Model('rideoffer');
 export const addRide = async (req, res) => {
   const { id } = req.user.userInfo;
   const { location, destination, amount, status } = req.body;
-  const columns = ' "driver_id", "location", "destination", "amount", "status"';
-  const values = ` ${id}, '${location}', '${destination}', '${amount}', '${status}' `;
+  const columns = ' "driverId", "location", "destination", "amount", "status"';
+  const values = ` '${id}', '${location}', '${destination}', '${amount}', '${status}' `;
   try {
     const data = await rideOfferModel.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });

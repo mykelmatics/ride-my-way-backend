@@ -9,16 +9,20 @@ import {
   validateSignup,
 } from '../../middleware';
 
-const userRouter = express.Router();
+const passengerRouter = express.Router();
 
-userRouter.post(
+passengerRouter.post(
   '/passenger/signup',
   validateSignup,
   validateExistingUser,
   createPassengerAccount
 );
-userRouter.post('/passenger/login', validatePassengerLoginDetails);
-userRouter.put('/passenger/edit-profile', isLoggedIn, editProfile);
-userRouter.post('/passenger/join-ride/:offerId', isLoggedIn, joinRide);
+passengerRouter.post('/passenger/login', validatePassengerLoginDetails);
+passengerRouter.put('/passenger/edit-profile', isLoggedIn, editProfile);
+passengerRouter.post(
+  '/passenger/ride-offers/offer/join-ride/:offerId',
+  isLoggedIn,
+  joinRide
+);
 
-export default userRouter;
+export default passengerRouter;

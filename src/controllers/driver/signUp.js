@@ -1,5 +1,5 @@
+import assignToken from '../../helper/assignToken';
 import Model from '../../models/model';
-import jwt from 'jsonwebtoken'
 
 export const driverModel = new Model('driver');
 
@@ -12,13 +12,7 @@ export const createDriverAccount = async (req, res) => {
     const data = await driverModel.insertWithReturn(columns, values);
     const { id } = data.rows[0];
     const userInfo = { id, firstName, lastName, email };
-    const token = jwt.sign(
-      {
-        userInfo,
-      },
-      'welcomeuser',
-      { expiresIn: '10h' }
-    );
+    const token = assignToken(userInfo);
     res.status(200).json({ messages: data.rows, token });
   } catch (err) {
     res.status(500).json({ messages: err.message });
