@@ -1,6 +1,6 @@
 import Model from '../../models/model';
 
-const rideOfferModel = new Model('rideoffer');
+const rideOfferModel = new Model('offers');
 
 export const rideOffers = async (req, res) => {
   const columns = '*';

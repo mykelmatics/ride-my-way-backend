@@ -1,50 +1,50 @@
 export const createPassengerTable = `
-CREATE TABLE IF NOT EXISTS passenger (
+CREATE TABLE IF NOT EXISTS passengers (
   id SERIAL PRIMARY KEY,
-  "firstName" VARCHAR NOT NULL,
-  "lastName" VARCHAR NOT NULL,
-  "phoneNumber" VARCHAR NOT NULL,
+  firstname VARCHAR NOT NULL,
+  lastname VARCHAR NOT NULL,
+  phone_number VARCHAR NOT NULL,
   password VARCHAR(250) NOT NULL,
   email VARCHAR NOT NULL
 )
   `;
 
 export const createDriverTable = `
-CREATE TABLE IF NOT EXISTS driver (
+CREATE TABLE IF NOT EXISTS drivers (
   id SERIAL PRIMARY KEY,
-  "firstName" VARCHAR NOT NULL,
-  "lastName" VARCHAR NOT NULL,
-  "phoneNumber" VARCHAR NOT NULL,
+  firstname VARCHAR NOT NULL,
+  lastname VARCHAR NOT NULL,
+  phone_number VARCHAR NOT NULL,
   password VARCHAR(250) NOT NULL,
   email VARCHAR NOT NULL
 )
   `;
 
 export const createRideOffer = `
-  CREATE TABLE IF NOT EXISTS rideoffer (
+  CREATE TABLE IF NOT EXISTS offers (
     id SERIAL PRIMARY KEY,
-    "driverId" integer REFERENCES driver(id),
+    driver_id integer REFERENCES drivers(id),
     amount INT NOT NULL,
     location VARCHAR(150) NOT NULL,
     destination VARCHAR(150) NOT NULL,
-    "createdAt" TIMESTAMP DEFAULT NOW() NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
     status VARCHAR(15) NOT NULL
   )
   `;
 export const createRideHistory = `
   CREATE TABLE IF NOT EXISTS ridehistory (
     id SERIAL PRIMARY KEY,
-    "driverId" integer REFERENCES driver(id),
-    "passengerId" integer REFERENCES passenger(id),
-    "offerId" integer REFERENCES rideoffer(id),
+    driver_id integer REFERENCES drivers(id),
+    passenger_id integer REFERENCES passengers(id),
+    offer_id integer REFERENCES offers(id),
     amount INT NOT NULL,
     location VARCHAR(150) NOT NULL,
     destination VARCHAR(150) NOT NULL,
-    "createdAt" TIMESTAMP DEFAULT NOW() NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
     status VARCHAR(15) NOT NULL
   )
   `;
-export const dropPassengerTable = 'DROP TABLE passenger';
-export const dropDriverTable = 'DROP TABLE driver';
-export const dropRideOfferTable = 'DROP TABLE rideoffer';
+export const dropPassengerTable = 'DROP TABLE passengers';
+export const dropDriverTable = 'DROP TABLE drivers';
+export const dropRideOfferTable = 'DROP TABLE offers';
 export const dropRideHistoryTable = 'DROP TABLE ridehistory';

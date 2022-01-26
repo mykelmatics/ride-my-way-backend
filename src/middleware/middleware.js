@@ -14,7 +14,7 @@ export const validateExistingUser = async (req, res, next) => {
     );
     const validatePhoneNumber = await passengerModel.select(
       '*',
-      ` WHERE "phoneNumber"='${phoneNumber}'`
+      ` WHERE "phone_number"='${phoneNumber}'`
     );
     if (validateEmail.rowCount || validatePhoneNumber.rowCount) {
       return res.status(409).json({
@@ -37,7 +37,7 @@ export const validateExistingDriver = async (req, res, next) => {
     );
     const validatePhoneNumber = await driverModel.select(
       '*',
-      ` WHERE "phoneNumber"='${phoneNumber}'`
+      ` WHERE "phone_number"='${phoneNumber}'`
     );
     if (validateEmail.rowCount || validatePhoneNumber.rowCount) {
       return res.status(409).json({
@@ -70,8 +70,8 @@ export const validatePassengerLoginDetails = async (req, res, next) => {
       validateEmail.rows[0].password
     );
     if (validatePassword) {
-      const { id, firstName, lastName, email } = validateEmail.rows[0];
-      const userInfo = { id, firstName, lastName, email };
+      const { id, firstname, lastname, email } = validateEmail.rows[0];
+      const userInfo = { id, firstname, lastname, email };
       const token = assignToken(userInfo)
       return res.status(200).json({
         message: 'Login Successfully',
@@ -108,8 +108,8 @@ export const validateDriverLoginDetails = async (req, res) => {
       validateEmail.rows[0].password
     );
     if (validatePassword) {
-      const { id, firstName, lastName, email } = validateEmail.rows[0];
-      const userInfo = { id, firstName, lastName, email };
+      const { id, firstname, lastname, email } = validateEmail.rows[0];
+      const userInfo = { id, firstname, lastname, email };
       const token = assignToken(userInfo)
 
       return res.status(200).json({

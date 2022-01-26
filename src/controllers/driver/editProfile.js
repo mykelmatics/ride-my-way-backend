@@ -1,6 +1,6 @@
 import Model from '../../models/model';
 
-export const editOfferModel = new Model('driver');
+export const editOfferModel = new Model('drivers');
 
 export const editProfile = async (req, res) => {
   const data = req.body;

@@ -1,12 +1,12 @@
 import Model from '../../models/model';
 
-export const editOfferModel = new Model('rideoffer');
+export const editOfferModel = new Model('offers');
 
 export const editRideOffer = async (req, res) => {
   const data = req.body
   const {offerId} = req.params
   const { id } = req.user.userInfo;
-  const clause = `WHERE id = ${offerId} AND driverId = ${id}`;
+  const clause = `WHERE id = ${offerId} AND driver_id = ${id}`;
 
   try {
     const dataInfo = await editOfferModel.editFromTable(

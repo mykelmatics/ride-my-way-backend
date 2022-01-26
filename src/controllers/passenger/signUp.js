@@ -1,11 +1,11 @@
 import Model from '../../models/model';
 import assignToken from '../../helper/assignToken';
 
-export const passengerModel = new Model('passenger');
+export const passengerModel = new Model('passengers');
 
 export const createPassengerAccount = async (req, res) => {
   const { firstName, lastName, phoneNumber, password, email } = req.body;
-  const columns = '"firstName", "lastName", "phoneNumber", "password", "email"';
+  const columns = '"firstname", "lastname", "phone_number", "password", "email"';
   const values = ` '${firstName}', '${lastName}', '${phoneNumber}', '${password}', '${email}' `;
   try {
     const data = await passengerModel.insertWithReturn(columns, values);

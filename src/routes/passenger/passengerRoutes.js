@@ -18,9 +18,9 @@ passengerRouter.post(
   createPassengerAccount
 );
 passengerRouter.post('/passenger/login', validatePassengerLoginDetails);
-passengerRouter.put('/passenger/edit-profile', isLoggedIn, editProfile);
+passengerRouter.put('/passenger/profile', isLoggedIn, editProfile);
 passengerRouter.post(
-  '/passenger/ride-offers/offer/join-ride/:offerId',
+  '/passenger/offers/join-ride/:offerId',
   isLoggedIn,
   joinRide
 );

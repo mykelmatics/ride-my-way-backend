@@ -1,6 +1,6 @@
 import Model from "../../models/model";
 
-export const deleteOfferModel = new Model('rideoffer');
+export const deleteOfferModel = new Model('offers');
 
 export const deleteRideOffer = async (req, res) => {
     const { id } = req.user.userInfo;

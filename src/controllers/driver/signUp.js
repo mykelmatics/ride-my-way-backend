@@ -1,11 +1,11 @@
 import assignToken from '../../helper/assignToken';
 import Model from '../../models/model';
 
-export const driverModel = new Model('driver');
+export const driverModel = new Model('drivers');
 
 export const createDriverAccount = async (req, res) => {
   const { firstName, lastName, phoneNumber, password, email } = req.body;
-  const columns = '"firstName", "lastName", "phoneNumber", password, email';
+  const columns = '"firstname", "lastname", "phone_number", password, email';
   const values = ` '${firstName}', '${lastName}', '${phoneNumber}', '${password}', '${email}' `;
 
   try {
