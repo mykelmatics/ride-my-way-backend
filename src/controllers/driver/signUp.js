@@ -13,7 +13,7 @@ export const createDriverAccount = async (req, res) => {
     const { id } = data.rows[0];
     const userInfo = { id, firstName, lastName, email };
     const token = assignToken(userInfo);
-    res.status(200).json({ messages: data.rows, token });
+    res.status(201).json({ messages: userInfo, token });
   } catch (err) {
     res.status(500).json({ messages: err.message });
   }
